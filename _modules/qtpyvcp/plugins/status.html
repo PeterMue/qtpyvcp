@@ -1,0 +1,886 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>qtpyvcp.plugins.status &mdash; QtPyVCP v0.1.4+18.g14e25b4 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> QtPyVCP
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v0.1.4+18.g14e25b4
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../basic_usage.html">Basic Usage</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Configuration</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../configuration.html">INI Configuration</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/widget_rules.html">Widget Rules</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Module &amp; API Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../plugins/index.html">QtPyVCP Data Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../actions/index.html">QtPyVCP Actions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../widgets/index.html">QtPyVCP Widgets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../application.html">QtPyVCP Application</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Developers Corner</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../development/development.html">Contributing to QtPyVCP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tools/index.html">Command-line Tools</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Links</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/kcjengr/qtpyvcp">QtPyVCP GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/linuxcnc/linuxcnc">LinuxCNC Github</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">QtPyVCP</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>qtpyvcp.plugins.status</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for qtpyvcp.plugins.status</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python</span>
+
+<span class="c1">#   Copyright (c) 2018 Kurt Jacobson</span>
+<span class="c1">#      &lt;kurtcjacobson@gmail.com&gt;</span>
+<span class="c1">#</span>
+<span class="c1">#   This file is part of QtPyVCP.</span>
+<span class="c1">#</span>
+<span class="c1">#   QtPyVCP is free software: you can redistribute it and/or modify</span>
+<span class="c1">#   it under the terms of the GNU General Public License as published by</span>
+<span class="c1">#   the Free Software Foundation, either version 2 of the License, or</span>
+<span class="c1">#   (at your option) any later version.</span>
+<span class="c1">#</span>
+<span class="c1">#   QtPyVCP is distributed in the hope that it will be useful,</span>
+<span class="c1">#   but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="c1">#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="c1">#   GNU General Public License for more details.</span>
+<span class="c1">#</span>
+<span class="c1">#   You should have received a copy of the GNU General Public License</span>
+<span class="c1">#   along with QtPyVCP.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+
+<span class="kn">from</span> <span class="nn">qtpy.QtCore</span> <span class="k">import</span> <span class="n">QObject</span><span class="p">,</span> <span class="n">Signal</span><span class="p">,</span> <span class="n">Slot</span><span class="p">,</span> <span class="n">QTimer</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">linuxcnc</span>
+
+<span class="kn">from</span> <span class="nn">qtpyvcp.utilities.info</span> <span class="k">import</span> <span class="n">Info</span>
+<span class="kn">from</span> <span class="nn">qtpyvcp.utilities.prefs</span> <span class="k">import</span> <span class="n">Prefs</span>
+<span class="kn">from</span> <span class="nn">qtpyvcp.plugins.plugin</span> <span class="k">import</span> <span class="n">QtPyVCPDataPlugin</span><span class="p">,</span> <span class="n">QtPyVCPDataChannel</span>
+
+<span class="kn">from</span> <span class="nn">qtpyvcp.utilities.logger</span> <span class="k">import</span> <span class="n">getLogger</span>
+
+<span class="n">INFO</span> <span class="o">=</span> <span class="n">Info</span><span class="p">()</span>
+<span class="n">PREFS</span> <span class="o">=</span> <span class="n">Prefs</span><span class="p">()</span>
+
+<span class="n">LOG</span> <span class="o">=</span> <span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<span class="n">LOG</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="s2">&quot;DEBUG&quot;</span><span class="p">)</span>
+
+<span class="n">NUM_SPINDLES</span> <span class="o">=</span> <span class="n">INFO</span><span class="o">.</span><span class="n">spindles</span><span class="p">()</span>
+
+<span class="n">STAT</span> <span class="o">=</span> <span class="n">linuxcnc</span><span class="o">.</span><span class="n">stat</span><span class="p">()</span>
+
+<div class="viewcode-block" id="StatusItem"><a class="viewcode-back" href="../../../plugins/status.html#qtpyvcp.plugins.status.StatusItem">[docs]</a><span class="k">class</span> <span class="nc">StatusItem</span><span class="p">(</span><span class="n">QtPyVCPDataChannel</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;StatusItem object.</span>
+
+<span class="sd">    Each of the `linuxcnc.stat` attributes is represented by a StatusItem.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        item (str) : The name of the `linuxcnc.stat` item.</span>
+<span class="sd">        typ (type) : The python type of the item&#39;s value. If no type is specified</span>
+<span class="sd">            the type returned by `type(self.value)` will be used.</span>
+<span class="sd">        to_str (method) : A method which returns a textual version of the</span>
+<span class="sd">            item&#39;s value. If not specified defaults to the values `__str__` method.</span>
+<span class="sd">        description (str) : A human readable description of the item.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">,</span> <span class="n">typ</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">to_str</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">StatusItem</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="n">description</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">item</span> <span class="o">=</span> <span class="n">item</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">typ</span> <span class="o">=</span> <span class="n">typ</span> <span class="ow">or</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">to_str</span> <span class="o">=</span> <span class="n">to_str</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The items current value.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            any : The value of the item as of the last `stat.poll()`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">STAT</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">item</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">text</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The items current text.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str : The text of the item as of the last `stat.poll()`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">valueChanged</span><span class="o">.</span><span class="n">emit</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Status"><a class="viewcode-back" href="../../../plugins/status.html#qtpyvcp.plugins.status.Status">[docs]</a><span class="k">class</span> <span class="nc">Status</span><span class="p">(</span><span class="n">QtPyVCPDataPlugin</span><span class="p">):</span>
+
+    <span class="n">protocol</span> <span class="o">=</span> <span class="s1">&#39;status&#39;</span>
+
+    <span class="n">stat</span> <span class="o">=</span> <span class="n">STAT</span>
+
+    <span class="c1"># Queues</span>
+    <span class="n">active_queue</span> <span class="o">=</span> <span class="n">StatusItem</span><span class="p">(</span><span class="s1">&#39;active_queue&#39;</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>          <span class="c1"># number of motions blending</span>
+    <span class="n">queue</span> <span class="o">=</span> <span class="n">StatusItem</span><span class="p">(</span><span class="s1">&#39;queue&#39;</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>                        <span class="c1"># current size of the trajectory planner queue</span>
+    <span class="n">queue_full</span> <span class="o">=</span> <span class="n">StatusItem</span><span class="p">(</span><span class="s1">&#39;queue_full&#39;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>             <span class="c1"># the trajectory planner queue full flag</span>
+    <span class="n">queued_mdi_commands</span> <span class="o">=</span> <span class="n">StatusItem</span><span class="p">(</span><span class="s1">&#39;queued_mdi_commands&#39;</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>   <span class="c1">#</span>
+
+    <span class="c1"># Positions</span>
+    <span class="n">position</span> <span class="o">=</span> <span class="n">StatusItem</span><span class="p">(</span><span class="s1">&#39;position&#39;</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)</span>                 <span class="c1"># trajectory position</span>
+    <span class="n">actual_position</span> <span class="o">=</span> <span class="n">StatusItem</span><span class="p">(</span><span class="s1">&#39;actual_position&#39;</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)</span>   <span class="c1"># current position, in machine units</span>
+    <span class="n">joint_position</span> <span class="o">=</span> <span class="n">StatusItem</span><span class="p">(</span><span class="s1">&#39;joint_position&#39;</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)</span>     <span class="c1"># joint commanded positions</span>
+    <span class="n">joint_actual_position</span> <span class="o">=</span> <span class="n">StatusItem</span><span class="p">(</span><span class="s1">&#39;joint_actual_position&#39;</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)</span> <span class="c1"># joint actual positions</span>
+    <span class="n">dtg</span> <span class="o">=</span> <span class="n">StatusItem</span><span class="p">(</span><span class="s1">&#39;dtg&#39;</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)</span>                           <span class="c1"># DTG per axis, as reported by trajectory planner</span>
+    <span class="n">distance_to_go</span> <span class="o">=</span> <span class="n">StatusItem</span><span class="p">(</span><span class="s1">&#39;distance_to_go&#39;</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span>     <span class="c1"># vector DTG, as reported by trajectory planner</span>
+
+    <span class="c1"># Velocities</span>
+    <span class="n">current_vel</span> <span class="o">=</span> <span class="n">StatusItem</span><span class="p">(</span><span class="s1">&#39;current_vel&#39;</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span>           <span class="c1"># current velocity in user units per second</span>
+    <span class="n">velocity</span> <span class="o">=</span> <span class="n">StatusItem</span><span class="p">(</span><span class="s1">&#39;velocity&#39;</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span>                 <span class="c1"># unclear</span>
+
+    <span class="c1"># Offsets</span>
+    <span class="n">coords</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;G53&quot;</span><span class="p">,</span> <span class="s2">&quot;G54&quot;</span><span class="p">,</span> <span class="s2">&quot;G55&quot;</span><span class="p">,</span> <span class="s2">&quot;G56&quot;</span><span class="p">,</span> <span class="s2">&quot;G57&quot;</span><span class="p">,</span> <span class="s2">&quot;G58&quot;</span><span class="p">,</span> <span class="s2">&quot;G59&quot;</span><span class="p">,</span> <span class="s2">&quot;G59.1&quot;</span><span class="p">,</span> <span class="s2">&quot;G59.2&quot;</span><span class="p">,</span> <span class="s2">&quot;G59.3&quot;</span><span class="p">]</span>
+    <span class="n">g5x_index</span> <span class="o">=</span> <span class="n">StatusItem</span><span class="p">(</span><span class="s1">&#39;g5x_index&#39;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="n">coords</span><span class="o">.</span><span class="fm">__getitem__</span><span class="p">)</span>    <span class="c1"># active coordinate system index, G54=1, G55=2 etc</span>
+    <span class="n">g5x_offset</span> <span class="o">=</span> <span class="n">StatusItem</span><span class="p">(</span><span class="s1">&#39;g5x_offset&#39;</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)</span>          <span class="c1"># offset of the currently active coordinate system</span>
+    <span class="n">g92_offset</span> <span class="o">=</span> <span class="n">StatusItem</span><span class="p">(</span><span class="s1">&#39;g92_offset&#39;</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)</span>          <span class="c1"># values of the current g92 offset</span>
+    <span class="n">tool_offset</span> <span class="o">=</span> <span class="n">StatusItem</span><span class="p">(</span><span class="s1">&#39;tool_offset&#39;</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)</span>         <span class="c1"># offset values of the current tool</span>
+    <span class="n">rotation_xy</span> <span class="o">=</span> <span class="n">StatusItem</span><span class="p">(</span><span class="s1">&#39;rotation_xy&#39;</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span>         <span class="c1"># current XY rotation angle around Z axis</span>
+
+    <span class="c1"># I/O</span>
+    <span class="n">ain</span> <span class="o">=</span> <span class="n">StatusItem</span><span class="p">(</span><span class="s1">&#39;ain&#39;</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)</span>                 <span class="c1"># current value of the analog input pins</span>
+    <span class="n">aout</span> <span class="o">=</span> <span class="n">StatusItem</span><span class="p">(</span><span class="s1">&#39;aout&#39;</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)</span>                <span class="c1"># current value of the analog output pins</span>
+    <span class="n">din</span> <span class="o">=</span> <span class="n">StatusItem</span><span class="p">(</span><span class="s1">&#39;din&#39;</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)</span>                 <span class="c1"># current value of the digital input pins</span>
+    <span class="n">dout</span> <span class="o">=</span> <span class="n">StatusItem</span><span class="p">(</span><span class="s1">&#39;dout&#39;</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)</span>                <span class="c1"># current value of the digital output pins</span>
+
+    <span class="c1"># Cooling</span>
+    <span class="n">mist</span> <span class="o">=</span> <span class="n">StatusItem</span><span class="p">(</span><span class="s1">&#39;mist&#39;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>                 <span class="c1"># mist self.status</span>
+    <span class="n">flood</span> <span class="o">=</span> <span class="n">StatusItem</span><span class="p">(</span><span class="s1">&#39;flood&#39;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>                <span class="c1"># flood self.status, either FLOOD_OFF or FLOOD_ON</span>
+
+    <span class="c1"># Active codes</span>
+    <span class="n">to_str</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">gcodes</span><span class="p">:</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s2">&quot;M</span><span class="si">%g</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">gcode</span> <span class="k">for</span> <span class="n">gcode</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">gcodes</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span> <span class="k">if</span> <span class="n">gcode</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">mcodes</span> <span class="o">=</span> <span class="n">StatusItem</span><span class="p">(</span><span class="s1">&#39;mcodes&#39;</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">,</span> <span class="n">to_str</span><span class="p">)</span>     <span class="c1"># currently active M-codes</span>
+
+    <span class="n">to_str</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">mcodes</span><span class="p">:</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s2">&quot;G</span><span class="si">%g</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">mcode</span><span class="o">/</span><span class="mf">10.</span><span class="p">)</span> <span class="k">for</span> <span class="n">mcode</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">mcodes</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span> <span class="k">if</span> <span class="n">mcode</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">gcodes</span> <span class="o">=</span> <span class="n">StatusItem</span><span class="p">(</span><span class="s1">&#39;gcodes&#39;</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">,</span> <span class="n">to_str</span><span class="p">)</span>     <span class="c1"># active G-codes for each modal group</span>
+
+    <span class="c1"># Home and Limit</span>
+    <span class="n">homed</span> <span class="o">=</span> <span class="n">StatusItem</span><span class="p">(</span><span class="s1">&#39;homed&#39;</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)</span>               <span class="c1"># homed flag for each joint</span>
+    <span class="n">inpos</span> <span class="o">=</span> <span class="n">StatusItem</span><span class="p">(</span><span class="s1">&#39;inpos&#39;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>                <span class="c1"># machine-in-position flag</span>
+    <span class="n">limit</span> <span class="o">=</span> <span class="n">StatusItem</span><span class="p">(</span><span class="s1">&#39;limit&#39;</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)</span>               <span class="c1"># axis limit self.status masks</span>
+
+    <span class="c1"># Delays</span>
+    <span class="n">delay_left</span> <span class="o">=</span> <span class="n">StatusItem</span><span class="p">(</span><span class="s1">&#39;delay_left&#39;</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span>          <span class="c1"># remaining time on dwell (G4) command, seconds</span>
+    <span class="n">input_timeout</span> <span class="o">=</span> <span class="n">StatusItem</span><span class="p">(</span><span class="s1">&#39;input_timeout&#39;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>        <span class="c1"># flag for M66 timer in progress</span>
+
+    <span class="c1"># Lube</span>
+    <span class="n">lube</span> <span class="o">=</span> <span class="n">StatusItem</span><span class="p">(</span><span class="s1">&#39;lube&#39;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>                 <span class="c1"># lube on flag</span>
+    <span class="n">lube_level</span> <span class="o">=</span> <span class="n">StatusItem</span><span class="p">(</span><span class="s1">&#39;lube_level&#39;</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>            <span class="c1"># lube level, reflects iocontrol.0.lube_level.</span>
+
+    <span class="c1"># Program control</span>
+    <span class="n">optional_stop</span> <span class="o">=</span> <span class="n">StatusItem</span><span class="p">(</span><span class="s1">&#39;optional_stop&#39;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>        <span class="c1"># option stop enables flag</span>
+    <span class="n">block_delete</span> <span class="o">=</span> <span class="n">StatusItem</span><span class="p">(</span><span class="s1">&#39;block_delete&#39;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>         <span class="c1"># block delete current self.status</span>
+    <span class="n">paused</span> <span class="o">=</span> <span class="n">StatusItem</span><span class="p">(</span><span class="s1">&#39;paused&#39;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>               <span class="c1"># motion paused flag</span>
+    <span class="n">feed_hold_enabled</span> <span class="o">=</span> <span class="n">StatusItem</span><span class="p">(</span><span class="s1">&#39;feed_hold_enabled&#39;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>    <span class="c1"># enable flag for feed hold</span>
+
+    <span class="c1"># Probe</span>
+    <span class="n">probe_tripped</span> <span class="o">=</span> <span class="n">StatusItem</span><span class="p">(</span><span class="s1">&#39;probe_tripped&#39;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>        <span class="c1"># probe tripped flag (latched)</span>
+    <span class="n">probe_val</span> <span class="o">=</span> <span class="n">StatusItem</span><span class="p">(</span><span class="s1">&#39;probe_val&#39;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>            <span class="c1"># reflects value of the motion.probe-input pin</span>
+    <span class="n">probed_position</span> <span class="o">=</span> <span class="n">StatusItem</span><span class="p">(</span><span class="s1">&#39;probed_position&#39;</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)</span>     <span class="c1"># position where probe tripped</span>
+    <span class="n">probing</span> <span class="o">=</span> <span class="n">StatusItem</span><span class="p">(</span><span class="s1">&#39;probing&#39;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>              <span class="c1"># probing in progress flag</span>
+
+    <span class="c1"># Program File</span>
+    <span class="n">file</span> <span class="o">=</span> <span class="n">StatusItem</span><span class="p">(</span><span class="s1">&#39;file&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>                  <span class="c1"># path of currently loaded gcode file</span>
+    <span class="n">to_str</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;NA&quot;</span><span class="p">,</span> <span class="s2">&quot;in&quot;</span><span class="p">,</span> <span class="s2">&quot;mm&quot;</span><span class="p">,</span> <span class="s2">&quot;cm&quot;</span><span class="p">]</span><span class="o">.</span><span class="fm">__getitem__</span>
+    <span class="n">program_units</span> <span class="o">=</span> <span class="n">StatusItem</span><span class="p">(</span><span class="s1">&#39;program_units&#39;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="n">to_str</span><span class="p">)</span><span class="c1"># one of CANON_UNITS_INCHES=1, CANON_UNITS_MM=2</span>
+    <span class="n">motion_line</span> <span class="o">=</span> <span class="n">StatusItem</span><span class="p">(</span><span class="s1">&#39;motion_line&#39;</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>           <span class="c1"># source line number motion is currently executing</span>
+    <span class="n">current_line</span> <span class="o">=</span> <span class="n">StatusItem</span><span class="p">(</span><span class="s1">&#39;current_line&#39;</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>          <span class="c1"># currently executing line</span>
+    <span class="n">read_line</span> <span class="o">=</span> <span class="n">StatusItem</span><span class="p">(</span><span class="s1">&#39;read_line&#39;</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>             <span class="c1"># line the RS274NGC interpreter is currently reading</span>
+    <span class="n">call_level</span> <span class="o">=</span> <span class="n">StatusItem</span><span class="p">(</span><span class="s1">&#39;call_level&#39;</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>            <span class="c1">#</span>
+
+    <span class="c1"># Overrides</span>
+    <span class="n">feedrate</span> <span class="o">=</span> <span class="n">StatusItem</span><span class="p">(</span><span class="s1">&#39;feedrate&#39;</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span>            <span class="c1"># feed-rate override, 0-1</span>
+    <span class="n">rapidrate</span> <span class="o">=</span> <span class="n">StatusItem</span><span class="p">(</span><span class="s1">&#39;rapidrate&#39;</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span>           <span class="c1"># rapid-rate override, 0-1</span>
+    <span class="n">max_velocity</span> <span class="o">=</span> <span class="n">StatusItem</span><span class="p">(</span><span class="s1">&#39;max_velocity&#39;</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span>        <span class="c1"># max velocity in machine units/s</span>
+    <span class="n">feed_override_enabled</span> <span class="o">=</span> <span class="n">StatusItem</span><span class="p">(</span><span class="s1">&#39;feed_override_enabled&#39;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span><span class="c1"># enable flag for feed override</span>
+    <span class="n">adaptive_feed_enabled</span> <span class="o">=</span> <span class="n">StatusItem</span><span class="p">(</span><span class="s1">&#39;adaptive_feed_enabled&#39;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span><span class="c1"># self.status of adaptive feedrate override</span>
+
+    <span class="c1"># State</span>
+    <span class="n">enabled</span> <span class="o">=</span> <span class="n">StatusItem</span><span class="p">(</span><span class="s1">&#39;enabled&#39;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>              <span class="c1"># trajectory planner enabled</span>
+
+    <span class="c1"># estop = StatusItem([int], [bool])       # linuxcnc.STATE_ESTOP or not</span>
+    <span class="n">estop</span> <span class="o">=</span> <span class="n">StatusItem</span><span class="p">(</span><span class="n">item</span> <span class="o">=</span> <span class="s1">&#39;estop&#39;</span><span class="p">,</span>
+                        <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;Task Mode&quot;</span><span class="p">)</span>
+
+    <span class="c1"># state = StatusItem([int], [str])        # current command execution status. One of RCS_DONE, RCS_EXEC, RCS_ERROR.</span>
+    <span class="n">state</span> <span class="o">=</span> <span class="n">StatusItem</span><span class="p">(</span><span class="n">item</span> <span class="o">=</span> <span class="s1">&#39;state&#39;</span><span class="p">,</span>
+                        <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;Command Execution Status&quot;</span><span class="p">,</span>
+                        <span class="n">to_str</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s2">&quot;Unknown&quot;</span><span class="p">,</span>
+                                    <span class="n">linuxcnc</span><span class="o">.</span><span class="n">RCS_DONE</span><span class="p">:</span> <span class="s2">&quot;Done&quot;</span><span class="p">,</span>
+                                    <span class="n">linuxcnc</span><span class="o">.</span><span class="n">RCS_EXEC</span><span class="p">:</span> <span class="s2">&quot;Exec&quot;</span><span class="p">,</span>
+                                    <span class="n">linuxcnc</span><span class="o">.</span><span class="n">RCS_ERROR</span><span class="p">:</span> <span class="s2">&quot;Error&quot;</span><span class="p">,}</span><span class="o">.</span><span class="n">get</span>
+                        <span class="p">)</span>
+
+    <span class="c1"># exec_state = StatusItem([int], [str])   # task execution state</span>
+    <span class="n">exec_state</span> <span class="o">=</span> <span class="n">StatusItem</span><span class="p">(</span><span class="n">item</span> <span class="o">=</span> <span class="s1">&#39;exec_state&#39;</span><span class="p">,</span>
+                            <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;Task Execution State&quot;</span><span class="p">,</span>
+                            <span class="n">to_str</span> <span class="o">=</span> <span class="p">{</span><span class="n">linuxcnc</span><span class="o">.</span><span class="n">EXEC_ERROR</span><span class="p">:</span> <span class="s2">&quot;Error&quot;</span><span class="p">,</span>
+                                    <span class="n">linuxcnc</span><span class="o">.</span><span class="n">EXEC_DONE</span><span class="p">:</span> <span class="s2">&quot;Done&quot;</span><span class="p">,</span>
+                                    <span class="n">linuxcnc</span><span class="o">.</span><span class="n">EXEC_WAITING_FOR_MOTION</span><span class="p">:</span> <span class="s2">&quot;Waiting for Motion&quot;</span><span class="p">,</span>
+                                    <span class="n">linuxcnc</span><span class="o">.</span><span class="n">EXEC_WAITING_FOR_MOTION_QUEUE</span><span class="p">:</span> <span class="s2">&quot;Waiting for Motion Queue&quot;</span><span class="p">,</span>
+                                    <span class="n">linuxcnc</span><span class="o">.</span><span class="n">EXEC_WAITING_FOR_IO</span><span class="p">:</span> <span class="s2">&quot;Waiting for Pause&quot;</span><span class="p">,</span>
+                                    <span class="n">linuxcnc</span><span class="o">.</span><span class="n">EXEC_WAITING_FOR_MOTION_AND_IO</span><span class="p">:</span> <span class="s2">&quot;Waiting for Motion and IO&quot;</span><span class="p">,</span>
+                                    <span class="n">linuxcnc</span><span class="o">.</span><span class="n">EXEC_WAITING_FOR_DELAY</span><span class="p">:</span> <span class="s2">&quot;Waiting for Delay&quot;</span><span class="p">,</span>
+                                    <span class="n">linuxcnc</span><span class="o">.</span><span class="n">EXEC_WAITING_FOR_SYSTEM_CMD</span><span class="p">:</span> <span class="s2">&quot;Waiting for system CMD&quot;</span><span class="p">,</span>
+                                    <span class="n">linuxcnc</span><span class="o">.</span><span class="n">EXEC_WAITING_FOR_SPINDLE_ORIENTED</span><span class="p">:</span> <span class="s2">&quot;Waiting for spindle orient&quot;</span><span class="p">}</span><span class="o">.</span><span class="n">get</span>
+                            <span class="p">)</span>
+
+    <span class="c1"># task_mode = StatusItem([int], [str])    # current task mode</span>
+    <span class="n">task_mode</span> <span class="o">=</span> <span class="n">StatusItem</span><span class="p">(</span><span class="n">item</span> <span class="o">=</span> <span class="s1">&#39;task_mode&#39;</span><span class="p">,</span>
+                            <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;Task Mode&quot;</span><span class="p">,</span>
+                            <span class="n">to_str</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s2">&quot;Unknown&quot;</span><span class="p">,</span>
+                                        <span class="n">linuxcnc</span><span class="o">.</span><span class="n">MODE_MANUAL</span><span class="p">:</span> <span class="s2">&quot;Manual&quot;</span><span class="p">,</span>
+                                        <span class="n">linuxcnc</span><span class="o">.</span><span class="n">MODE_AUTO</span><span class="p">:</span> <span class="s2">&quot;Auto&quot;</span><span class="p">,</span>
+                                        <span class="n">linuxcnc</span><span class="o">.</span><span class="n">MODE_MDI</span><span class="p">:</span> <span class="s2">&quot;MDI&quot;</span><span class="p">}</span><span class="o">.</span><span class="n">get</span>
+                            <span class="p">)</span>
+
+    <span class="c1"># task_paused = StatusItem(bool)          # task paused flag</span>
+    <span class="n">task_paused</span> <span class="o">=</span> <span class="n">StatusItem</span><span class="p">(</span><span class="n">item</span> <span class="o">=</span> <span class="s1">&#39;task_paused&#39;</span><span class="p">,</span>
+                            <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;Program Paused State&quot;</span><span class="p">,</span>
+                            <span class="n">to_str</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;False&#39;</span><span class="p">,</span> <span class="s1">&#39;True&#39;</span><span class="p">]</span><span class="o">.</span><span class="fm">__getitem__</span><span class="p">)</span>
+
+    <span class="c1"># task_state = StatusItem([int], [str])   # current task state</span>
+    <span class="n">task_state</span> <span class="o">=</span> <span class="n">StatusItem</span><span class="p">(</span><span class="n">item</span> <span class="o">=</span> <span class="s1">&#39;task_state&#39;</span><span class="p">,</span>
+                            <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;Task State&quot;</span><span class="p">,</span>
+                            <span class="n">to_str</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s2">&quot;Unknown&quot;</span><span class="p">,</span>
+                                      <span class="n">linuxcnc</span><span class="o">.</span><span class="n">STATE_ESTOP</span><span class="p">:</span> <span class="s2">&quot;Estop&quot;</span><span class="p">,</span>
+                                      <span class="n">linuxcnc</span><span class="o">.</span><span class="n">STATE_ESTOP_RESET</span><span class="p">:</span> <span class="s2">&quot;Reset&quot;</span><span class="p">,</span>
+                                      <span class="n">linuxcnc</span><span class="o">.</span><span class="n">STATE_ON</span><span class="p">:</span> <span class="s2">&quot;On&quot;</span><span class="p">,</span>
+                                      <span class="n">linuxcnc</span><span class="o">.</span><span class="n">STATE_OFF</span><span class="p">:</span> <span class="s2">&quot;Off&quot;</span><span class="p">}</span><span class="o">.</span><span class="n">get</span>
+                            <span class="p">)</span>
+
+    <span class="c1"># mode of the motion controller</span>
+    <span class="n">motion_mode</span> <span class="o">=</span> <span class="n">StatusItem</span><span class="p">(</span><span class="s1">&#39;motion_mode&#39;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+                            <span class="n">to_str</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s2">&quot;Unknown&quot;</span><span class="p">,</span>
+                                    <span class="n">linuxcnc</span><span class="o">.</span><span class="n">TRAJ_MODE_COORD</span><span class="p">:</span> <span class="s2">&quot;Coord&quot;</span><span class="p">,</span>
+                                    <span class="n">linuxcnc</span><span class="o">.</span><span class="n">TRAJ_MODE_FREE</span><span class="p">:</span> <span class="s2">&quot;Free&quot;</span><span class="p">,</span>
+                                    <span class="n">linuxcnc</span><span class="o">.</span><span class="n">TRAJ_MODE_TELEOP</span><span class="p">:</span> <span class="s2">&quot;Teleop&quot;</span><span class="p">}</span><span class="o">.</span><span class="n">get</span><span class="p">)</span>
+
+    <span class="c1"># type of the currently executing motion</span>
+    <span class="n">motion_type</span> <span class="o">=</span> <span class="n">StatusItem</span><span class="p">(</span><span class="s1">&#39;motion_type&#39;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+                            <span class="n">to_str</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s2">&quot;None&quot;</span><span class="p">,</span>
+                                    <span class="n">linuxcnc</span><span class="o">.</span><span class="n">MOTION_TYPE_TRAVERSE</span><span class="p">:</span> <span class="s2">&quot;Traverse&quot;</span><span class="p">,</span>
+                                    <span class="n">linuxcnc</span><span class="o">.</span><span class="n">MOTION_TYPE_FEED</span><span class="p">:</span> <span class="s2">&quot;Linear Feed&quot;</span><span class="p">,</span>
+                                    <span class="n">linuxcnc</span><span class="o">.</span><span class="n">MOTION_TYPE_ARC</span><span class="p">:</span> <span class="s2">&quot;Arc Feed&quot;</span><span class="p">,</span>
+                                    <span class="n">linuxcnc</span><span class="o">.</span><span class="n">MOTION_TYPE_TOOLCHANGE</span><span class="p">:</span> <span class="s2">&quot;Tool Change&quot;</span><span class="p">,</span>
+                                    <span class="n">linuxcnc</span><span class="o">.</span><span class="n">MOTION_TYPE_PROBING</span><span class="p">:</span> <span class="s2">&quot;Probing&quot;</span><span class="p">,</span>
+                                    <span class="n">linuxcnc</span><span class="o">.</span><span class="n">MOTION_TYPE_INDEXROTARY</span><span class="p">:</span> <span class="s2">&quot;Rotary Index&quot;</span><span class="p">}</span><span class="o">.</span><span class="n">get</span><span class="p">)</span>
+
+    <span class="c1"># current state of RS274NGC interpreter</span>
+    <span class="n">interp_state</span> <span class="o">=</span> <span class="n">StatusItem</span><span class="p">(</span><span class="s1">&#39;interp_state&#39;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+                                <span class="n">to_str</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s2">&quot;Unknown&quot;</span><span class="p">,</span>
+                                        <span class="n">linuxcnc</span><span class="o">.</span><span class="n">INTERP_IDLE</span><span class="p">:</span> <span class="s2">&quot;Idle&quot;</span><span class="p">,</span>
+                                        <span class="n">linuxcnc</span><span class="o">.</span><span class="n">INTERP_READING</span><span class="p">:</span> <span class="s2">&quot;Reading&quot;</span><span class="p">,</span>
+                                        <span class="n">linuxcnc</span><span class="o">.</span><span class="n">INTERP_PAUSED</span><span class="p">:</span> <span class="s2">&quot;Paused&quot;</span><span class="p">,</span>
+                                        <span class="n">linuxcnc</span><span class="o">.</span><span class="n">INTERP_WAITING</span><span class="p">:</span> <span class="s2">&quot;Waiting&quot;</span><span class="p">}</span><span class="o">.</span><span class="n">get</span><span class="p">)</span>
+
+    <span class="c1"># current RS274NGC interpreter return code</span>
+    <span class="n">interpreter_errcode</span> <span class="o">=</span> <span class="n">StatusItem</span><span class="p">(</span><span class="s1">&#39;interpreter_errcode&#39;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+                                    <span class="n">to_str</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s2">&quot;Unknown&quot;</span><span class="p">,</span>
+                                                <span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;Ok&quot;</span><span class="p">,</span>
+                                                <span class="mi">2</span><span class="p">:</span> <span class="s2">&quot;Exit&quot;</span><span class="p">,</span>
+                                                <span class="mi">3</span><span class="p">:</span> <span class="s2">&quot;Finished&quot;</span><span class="p">,</span>
+                                                <span class="mi">4</span><span class="p">:</span> <span class="s2">&quot;Endfile&quot;</span><span class="p">,</span>
+                                                <span class="mi">4</span><span class="p">:</span> <span class="s2">&quot;File not open&quot;</span><span class="p">,</span>
+                                                <span class="mi">5</span><span class="p">:</span> <span class="s2">&quot;Error&quot;</span><span class="p">}</span><span class="o">.</span><span class="n">get</span><span class="p">)</span>
+
+    <span class="n">settings</span> <span class="o">=</span> <span class="n">StatusItem</span><span class="p">(</span><span class="s1">&#39;settings&#39;</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)</span>            <span class="c1"># interpreter settings. (sequence_number, feed_rate, speed)</span>
+
+    <span class="n">jog_mode_signal</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">(</span><span class="nb">bool</span><span class="p">)</span>             <span class="c1"># jog mode = true</span>
+
+    <span class="n">linear_units</span> <span class="o">=</span> <span class="n">StatusItem</span><span class="p">(</span><span class="s1">&#39;linear_units&#39;</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span>
+                                <span class="n">to_str</span> <span class="o">=</span> <span class="p">{</span>  <span class="mf">0.0</span><span class="p">:</span> <span class="s2">&quot;N/A&quot;</span><span class="p">,</span>
+                                            <span class="mf">1.0</span><span class="p">:</span> <span class="s2">&quot;mm&quot;</span><span class="p">,</span>
+                                            <span class="mi">1</span><span class="o">/</span><span class="mf">25.4</span><span class="p">:</span> <span class="s2">&quot;in&quot;</span><span class="p">}</span><span class="o">.</span><span class="n">get</span><span class="p">)</span>
+
+    <span class="n">angular_units</span> <span class="o">=</span> <span class="n">StatusItem</span><span class="p">(</span><span class="s1">&#39;angular_units&#39;</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span>
+
+    <span class="c1"># Tool</span>
+    <span class="n">tool_in_spindle</span> <span class="o">=</span> <span class="n">StatusItem</span><span class="p">(</span><span class="s1">&#39;tool_in_spindle&#39;</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>       <span class="c1"># current tool number</span>
+    <span class="n">pocket_prepped</span> <span class="o">=</span> <span class="n">StatusItem</span><span class="p">(</span><span class="s1">&#39;pocket_prepped&#39;</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>        <span class="c1"># Tx command completed, and this pocket is prepared</span>
+    <span class="n">tool_table</span> <span class="o">=</span> <span class="n">StatusItem</span><span class="p">(</span><span class="s1">&#39;tool_table&#39;</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)</span>          <span class="c1"># list of tool entries</span>
+
+    <span class="n">tool_data</span> <span class="o">=</span> <span class="n">StatusItem</span><span class="p">(</span><span class="s1">&#39;tool_in_spindle&#39;</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span>
+
+    <span class="n">spindles</span> <span class="o">=</span> <span class="n">StatusItem</span><span class="p">(</span><span class="s1">&#39;spindles&#39;</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>
+    <span class="n">axes</span> <span class="o">=</span> <span class="n">StatusItem</span><span class="p">(</span><span class="s1">&#39;axes&#39;</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>
+    <span class="n">joints</span> <span class="o">=</span> <span class="n">StatusItem</span><span class="p">(</span><span class="s1">&#39;joints&#39;</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>
+
+    <span class="c1"># Extended status signals</span>
+    <span class="n">axis_positions</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">(</span><span class="nb">tuple</span><span class="p">)</span>      <span class="c1"># ABS, REL and DTG axis values</span>
+    <span class="n">joint_positions</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">(</span><span class="nb">tuple</span><span class="p">)</span>     <span class="c1"># joint pos respecting INI settings</span>
+    <span class="n">file_loaded</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>           <span class="c1"># file loaded</span>
+
+    <span class="c1"># interpreter settings</span>
+    <span class="n">feed</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>                <span class="c1"># Current requested feed</span>
+    <span class="n">speed</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>               <span class="c1"># Current requested speed</span>
+
+    <span class="n">on</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">(</span><span class="nb">bool</span><span class="p">)</span>
+    <span class="n">moving</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">(</span><span class="nb">bool</span><span class="p">)</span>
+    <span class="n">all_homed</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">(</span><span class="nb">bool</span><span class="p">)</span>
+
+    <span class="c1"># Gcode Backplot</span>
+    <span class="n">backplot_line_selected</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">backplot_loading_started</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">()</span>
+    <span class="n">backplot_loading_progress</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">backplot_loading_finished</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">()</span>
+    <span class="n">backplot_gcode_error</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+    <span class="n">reload_backplot</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">()</span>
+
+    <span class="n">recent_files_changed</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">(</span><span class="nb">tuple</span><span class="p">)</span>
+
+    <span class="c1"># Emitted when the UI is loaded</span>
+    <span class="n">init_ui</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">()</span>
+
+    <span class="c1"># Emitted on app shutdown</span>
+    <span class="n">on_shutown</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cycle_time</span><span class="o">=</span><span class="mi">75</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Status</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">no_force_homing</span> <span class="o">=</span> <span class="n">INFO</span><span class="o">.</span><span class="n">noForceHoming</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_report_actual_position</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_recent_files</span> <span class="o">=</span> <span class="n">PREFS</span><span class="o">.</span><span class="n">getPref</span><span class="p">(</span><span class="s2">&quot;STATUS&quot;</span><span class="p">,</span> <span class="s2">&quot;MAX_RECENT_FILES&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>
+        <span class="n">files</span> <span class="o">=</span> <span class="n">PREFS</span><span class="o">.</span><span class="n">getPref</span><span class="p">(</span><span class="s2">&quot;STATUS&quot;</span><span class="p">,</span> <span class="s2">&quot;RECENT_FILES&quot;</span><span class="p">,</span> <span class="p">[],</span> <span class="nb">list</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">recent_files</span> <span class="o">=</span> <span class="p">[</span><span class="n">file</span> <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">files</span> <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">file</span><span class="p">)]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">jog_increment</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># jog</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">step_jog_increment</span> <span class="o">=</span> <span class="n">INFO</span><span class="o">.</span><span class="n">getIncrements</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">jog_mode</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">linear_jog_velocity</span> <span class="o">=</span> <span class="n">INFO</span><span class="o">.</span><span class="n">getJogVelocity</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">angular_jog_velocity</span> <span class="o">=</span> <span class="n">INFO</span><span class="o">.</span><span class="n">getJogVelocity</span><span class="p">()</span>
+
+        <span class="c1"># Try initial poll</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">STAT</span><span class="o">.</span><span class="n">poll</span><span class="p">()</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">pass</span>
+
+        <span class="n">excluded_items</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;axis&#39;</span><span class="p">,</span> <span class="s1">&#39;joint&#39;</span><span class="p">,</span> <span class="s1">&#39;spindle&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;acceleration&#39;</span><span class="p">,</span> <span class="s1">&#39;max_acceleration&#39;</span><span class="p">,</span> <span class="s1">&#39;kinematics_type&#39;</span><span class="p">,</span> <span class="s1">&#39;axis_mask&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;cycle_time&#39;</span><span class="p">,</span> <span class="s1">&#39;echo_serial_number&#39;</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;poll&#39;</span><span class="p">,</span> <span class="s1">&#39;command&#39;</span><span class="p">,</span> <span class="s1">&#39;debug&#39;</span><span class="p">]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">old</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="c1"># initialize the old values dict</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">STAT</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">item</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">excluded_items</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">old</span><span class="p">[</span><span class="n">item</span><span class="p">]</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">STAT</span><span class="p">,</span> <span class="n">item</span><span class="p">)</span>
+
+        <span class="c1"># These signals should all cause position updates</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">onValueChanged</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">updateAxisPositions</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">g5x_offset</span><span class="o">.</span><span class="n">onValueChanged</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">updateAxisPositions</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">g92_offset</span><span class="o">.</span><span class="n">onValueChanged</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">updateAxisPositions</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tool_offset</span><span class="o">.</span><span class="n">onValueChanged</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">updateAxisPositions</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">joint_position</span><span class="o">.</span><span class="n">onValueChanged</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">updateJointPositions</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">homed</span><span class="o">.</span><span class="n">onValueChanged</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_allHomed</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">task_state</span><span class="o">.</span><span class="n">onValueChanged</span><span class="p">(</span><span class="k">lambda</span> <span class="n">v</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">emit</span><span class="p">(</span><span class="n">v</span> <span class="o">==</span> <span class="n">linuxcnc</span><span class="o">.</span><span class="n">STATE_ON</span><span class="p">))</span>
+
+        <span class="c1"># File</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">onValueChanged</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">updateFileLoaded</span><span class="p">)</span>
+
+        <span class="c1"># feed and speed signals</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">onValueChanged</span><span class="p">(</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">feed</span><span class="o">.</span><span class="n">emit</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">onValueChanged</span><span class="p">(</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">feed</span><span class="o">.</span><span class="n">emit</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
+
+        <span class="c1"># Initialize Joint status class</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">joint</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">JointStatus</span><span class="p">(</span><span class="n">STAT</span><span class="o">.</span><span class="n">joint</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">9</span><span class="p">))</span>  <span class="c1">#range(INFO.NUM_JOINTS))</span>
+
+        <span class="c1"># Initialize Spindle status classes</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">spindle</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">SpindleStatus</span><span class="p">(</span><span class="n">STAT</span><span class="o">.</span><span class="n">spindle</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">))</span>  <span class="c1"># range(NUM_SPINDLES))</span>
+
+        <span class="c1"># Initialize Error status class</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">error</span> <span class="o">=</span> <span class="n">_Error</span><span class="p">()</span>
+
+        <span class="c1"># Set up the periodic update timer</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">timer</span> <span class="o">=</span> <span class="n">QTimer</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_cycle_time</span> <span class="o">=</span> <span class="n">cycle_time</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">timer</span><span class="o">.</span><span class="n">timeout</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_periodic</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Status.initialise"><a class="viewcode-back" href="../../../plugins/status.html#qtpyvcp.plugins.status.Status.initialise">[docs]</a>    <span class="k">def</span> <span class="nf">initialise</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Start the periodic update timer.&quot;&quot;&quot;</span>
+        <span class="n">LOG</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Starting periodic updates with </span><span class="si">{}</span><span class="s2">ms cycle time.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_cycle_time</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">timer</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_cycle_time</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Status.terminate"><a class="viewcode-back" href="../../../plugins/status.html#qtpyvcp.plugins.status.Status.terminate">[docs]</a>    <span class="k">def</span> <span class="nf">terminate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Save persistent settings on terminate.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">on_shutown</span><span class="o">.</span><span class="n">emit</span><span class="p">()</span>
+        <span class="n">PREFS</span><span class="o">.</span><span class="n">setPref</span><span class="p">(</span><span class="s2">&quot;STATUS&quot;</span><span class="p">,</span> <span class="s2">&quot;RECENT_FILES&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">recent_files</span><span class="p">)</span>
+        <span class="n">PREFS</span><span class="o">.</span><span class="n">setPref</span><span class="p">(</span><span class="s2">&quot;STATUS&quot;</span><span class="p">,</span> <span class="s2">&quot;MAX_RECENT_FILES&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_recent_files</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">_periodic</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># s = time.time()</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">STAT</span><span class="o">.</span><span class="n">poll</span><span class="p">()</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">LOG</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Status polling failed, is LinuxCNC running?&quot;</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="n">e</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">timer</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+            <span class="k">return</span>
+
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">old_value</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">old</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
+            <span class="n">new_value</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">STAT</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">old_value</span> <span class="o">!=</span> <span class="n">new_value</span><span class="p">:</span>
+
+                <span class="c1"># update the status item</span>
+                <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span><span class="o">.</span><span class="n">_update</span><span class="p">(</span><span class="n">new_value</span><span class="p">)</span>
+
+                <span class="c1"># update old values dict</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">old</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_value</span>
+
+        <span class="c1"># joint status updates</span>
+        <span class="k">for</span> <span class="n">jnum</span><span class="p">,</span> <span class="n">joint</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">joint</span><span class="p">):</span>
+            <span class="n">joint</span><span class="o">.</span><span class="n">_update</span><span class="p">(</span><span class="n">STAT</span><span class="o">.</span><span class="n">joint</span><span class="p">[</span><span class="n">jnum</span><span class="p">])</span>
+
+        <span class="c1"># spindle status updates</span>
+        <span class="k">for</span> <span class="n">snum</span><span class="p">,</span> <span class="n">spindle</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">spindle</span><span class="p">):</span>
+            <span class="n">spindle</span><span class="o">.</span><span class="n">_update</span><span class="p">(</span><span class="n">STAT</span><span class="o">.</span><span class="n">spindle</span><span class="p">[</span><span class="n">snum</span><span class="p">])</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">error</span><span class="o">.</span><span class="n">_periodic</span><span class="p">()</span>
+        <span class="c1"># print time.time() - s</span>
+
+<div class="viewcode-block" id="Status.forceUpdate"><a class="viewcode-back" href="../../../plugins/status.html#qtpyvcp.plugins.status.Status.forceUpdate">[docs]</a>    <span class="k">def</span> <span class="nf">forceUpdate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Force update of all status items and emit all signals.&quot;&quot;&quot;</span>
+        <span class="n">STAT</span><span class="o">.</span><span class="n">poll</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">old</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
+            <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span><span class="o">.</span><span class="n">_update</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+        <span class="c1"># joint status updates</span>
+        <span class="k">for</span> <span class="n">jnum</span><span class="p">,</span> <span class="n">joint</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">joint</span><span class="p">):</span>
+            <span class="n">joint</span><span class="o">.</span><span class="n">_update</span><span class="p">(</span><span class="n">STAT</span><span class="o">.</span><span class="n">joint</span><span class="p">[</span><span class="n">jnum</span><span class="p">])</span>
+
+        <span class="c1"># spindle status updates</span>
+        <span class="k">for</span> <span class="n">snum</span><span class="p">,</span> <span class="n">spindle</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">spindle</span><span class="p">):</span>
+            <span class="n">spindle</span><span class="o">.</span><span class="n">_update</span><span class="p">(</span><span class="n">STAT</span><span class="o">.</span><span class="n">spindle</span><span class="p">[</span><span class="n">snum</span><span class="p">])</span></div>
+
+    <span class="c1"># ===========================  Helper Functions  ==========================</span>
+
+<div class="viewcode-block" id="Status.setReportActualPosition"><a class="viewcode-back" href="../../../plugins/status.html#qtpyvcp.plugins.status.Status.setReportActualPosition">[docs]</a>    <span class="k">def</span> <span class="nf">setReportActualPosition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">report_actual</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        .. todo</span>
+
+<span class="sd">            This needed to be updated for the new StatusItems</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">report_actual</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_report_actual_position</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_report_actual_position</span> <span class="o">=</span> <span class="n">report_actual</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_report_actual_position</span><span class="p">:</span>
+                <span class="c1"># disconnect commanded pos update signals</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">disconnect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">updateAxisPositions</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">joint_position</span><span class="o">.</span><span class="n">disconnect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">updateJointPositions</span><span class="p">)</span>
+                <span class="c1"># connect actual pos update signals</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">actual_position</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">updateAxisPositions</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">joint_actual_position</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">updateJointPositions</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># disconnect actual pos update signals</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">actual_position</span><span class="o">.</span><span class="n">disconnect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">updateAxisPositions</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">joint_actual_position</span><span class="o">.</span><span class="n">disconnect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">updateJointPositions</span><span class="p">)</span>
+                <span class="c1"># connect commanded pos update signals</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">updateAxisPositions</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">joint_position</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">updateJointPositions</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">updateAxisPositions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="c1"># To allow forced updates, mostly for use by QtDesigner methods</span>
+        <span class="k">if</span> <span class="n">pos</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_report_actual_position</span><span class="p">:</span>
+                <span class="n">pos</span> <span class="o">=</span> <span class="n">STAT</span><span class="o">.</span><span class="n">actual_position</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">pos</span> <span class="o">=</span> <span class="n">STAT</span><span class="o">.</span><span class="n">position</span>
+
+        <span class="n">dtg</span> <span class="o">=</span> <span class="n">STAT</span><span class="o">.</span><span class="n">dtg</span>
+        <span class="n">g5x_offset</span> <span class="o">=</span> <span class="n">STAT</span><span class="o">.</span><span class="n">g5x_offset</span>
+        <span class="n">g92_offset</span> <span class="o">=</span> <span class="n">STAT</span><span class="o">.</span><span class="n">g92_offset</span>
+        <span class="n">tool_offset</span> <span class="o">=</span> <span class="n">STAT</span><span class="o">.</span><span class="n">tool_offset</span>
+
+        <span class="n">rel</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">9</span>
+        <span class="k">for</span> <span class="n">axis</span> <span class="ow">in</span> <span class="n">INFO</span><span class="o">.</span><span class="n">AXIS_NUMBER_LIST</span><span class="p">:</span>
+            <span class="n">rel</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span> <span class="o">=</span> <span class="n">pos</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span> <span class="o">-</span> <span class="n">g5x_offset</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span> <span class="o">-</span> <span class="n">tool_offset</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">STAT</span><span class="o">.</span><span class="n">rotation_xy</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">t</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="o">-</span><span class="n">STAT</span><span class="o">.</span><span class="n">rotation_xy</span><span class="p">)</span>
+            <span class="n">xr</span> <span class="o">=</span> <span class="n">rel</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">-</span> <span class="n">rel</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+            <span class="n">yr</span> <span class="o">=</span> <span class="n">rel</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">+</span> <span class="n">rel</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+            <span class="n">rel</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">xr</span>
+            <span class="n">rel</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">yr</span>
+
+        <span class="k">for</span> <span class="n">axis</span> <span class="ow">in</span> <span class="n">INFO</span><span class="o">.</span><span class="n">AXIS_NUMBER_LIST</span><span class="p">:</span>
+            <span class="n">rel</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span> <span class="o">-=</span> <span class="n">g92_offset</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">axis_positions</span><span class="o">.</span><span class="n">emit</span><span class="p">(</span><span class="nb">tuple</span><span class="p">([</span><span class="n">pos</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">rel</span><span class="p">),</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">dtg</span><span class="p">)]))</span>
+
+    <span class="k">def</span> <span class="nf">updateJointPositions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="c1"># To allow forced updates, mostly for use by QtDesigner methods</span>
+        <span class="k">if</span> <span class="n">pos</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_report_actual_position</span><span class="p">:</span>
+                <span class="n">pos</span> <span class="o">=</span> <span class="n">STAT</span><span class="o">.</span><span class="n">joint_actual_position</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">pos</span> <span class="o">=</span> <span class="n">STAT</span><span class="o">.</span><span class="n">joint_position</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">joint_positions</span><span class="o">.</span><span class="n">emit</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">updateFileLoaded</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">STAT</span><span class="o">.</span><span class="n">interp_state</span> <span class="o">==</span> <span class="n">linuxcnc</span><span class="o">.</span><span class="n">INTERP_IDLE</span> \
+                <span class="ow">and</span> <span class="n">STAT</span><span class="o">.</span><span class="n">call_level</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">file_loaded</span><span class="o">.</span><span class="n">emit</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_allHomed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">all_homed</span><span class="o">.</span><span class="n">emit</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">allHomed</span><span class="p">())</span>
+
+<div class="viewcode-block" id="Status.allHomed"><a class="viewcode-back" href="../../../plugins/status.html#qtpyvcp.plugins.status.Status.allHomed">[docs]</a>    <span class="k">def</span> <span class="nf">allHomed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Returns TRUE if all joints are homed.&#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">no_force_homing</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">for</span> <span class="n">jnum</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">STAT</span><span class="o">.</span><span class="n">joints</span><span class="p">):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">STAT</span><span class="o">.</span><span class="n">joint</span><span class="p">[</span><span class="n">jnum</span><span class="p">][</span><span class="s1">&#39;homed&#39;</span><span class="p">]:</span>
+                <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="kc">True</span></div></div>
+
+
+<span class="c1"># ==============================================================================</span>
+<span class="c1"># Joint status class</span>
+<span class="c1"># ==============================================================================</span>
+
+<div class="viewcode-block" id="JointStatusItem"><a class="viewcode-back" href="../../../plugins/status.html#qtpyvcp.plugins.status.JointStatusItem">[docs]</a><span class="k">class</span> <span class="nc">JointStatusItem</span><span class="p">(</span><span class="n">StatusItem</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">jnum</span><span class="p">,</span> <span class="n">item</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">typ</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">to_str</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">jnum</span> <span class="o">=</span> <span class="n">jnum</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">JointStatusItem</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">typ</span><span class="p">,</span> <span class="n">to_str</span><span class="p">,</span> <span class="n">description</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">typ</span><span class="p">(</span><span class="n">STAT</span><span class="o">.</span><span class="n">joint</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">jnum</span><span class="p">][</span><span class="bp">self</span><span class="o">.</span><span class="n">item</span><span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="JointStatus"><a class="viewcode-back" href="../../../plugins/status.html#qtpyvcp.plugins.status.JointStatus">[docs]</a><span class="k">class</span> <span class="nc">JointStatus</span><span class="p">(</span><span class="n">QObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Joint status class.</span>
+<span class="sd">        An instance of this class is created for each joint.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">jstat</span><span class="p">,</span> <span class="n">jnum</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">JointStatus</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">jstat</span> <span class="o">=</span> <span class="n">jstat</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">jnum</span> <span class="o">=</span> <span class="n">jnum</span>
+
+        <span class="c1"># `linuxcnc.stat.join[n]` attribute signals</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">jointType</span> <span class="o">=</span> <span class="n">JointStatusItem</span><span class="p">(</span><span class="n">jnum</span><span class="p">,</span> <span class="s1">&#39;jointType&#39;</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>               <span class="c1"># reflects [JOINT_n]TYPE</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">backlash</span> <span class="o">=</span> <span class="n">JointStatusItem</span><span class="p">(</span><span class="n">jnum</span><span class="p">,</span> <span class="s1">&#39;backlash&#39;</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span>               <span class="c1"># backlash in machine units</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">enabled</span> <span class="o">=</span> <span class="n">JointStatusItem</span><span class="p">(</span><span class="n">jnum</span><span class="p">,</span> <span class="s1">&#39;enabled&#39;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>                  <span class="c1"># enabled flag</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fault</span> <span class="o">=</span> <span class="n">JointStatusItem</span><span class="p">(</span><span class="n">jnum</span><span class="p">,</span> <span class="s1">&#39;fault&#39;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>                      <span class="c1"># active fault flag</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ferror_current</span> <span class="o">=</span> <span class="n">JointStatusItem</span><span class="p">(</span><span class="n">jnum</span><span class="p">,</span> <span class="s1">&#39;ferror_current&#39;</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span>   <span class="c1"># current following error</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ferror_highmark</span> <span class="o">=</span> <span class="n">JointStatusItem</span><span class="p">(</span><span class="n">jnum</span><span class="p">,</span> <span class="s1">&#39;ferror_highmark&#39;</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span> <span class="c1"># magnitude of max following error</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">homed</span> <span class="o">=</span> <span class="n">JointStatusItem</span><span class="p">(</span><span class="n">jnum</span><span class="p">,</span> <span class="s1">&#39;homed&#39;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>                      <span class="c1"># homed flag</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">homing</span> <span class="o">=</span><span class="n">JointStatusItem</span><span class="p">(</span><span class="n">jnum</span><span class="p">,</span> <span class="s1">&#39;homing&#39;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>                     <span class="c1"># currently homing flag</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">inpos</span> <span class="o">=</span> <span class="n">JointStatusItem</span><span class="p">(</span><span class="n">jnum</span><span class="p">,</span> <span class="s1">&#39;inpos&#39;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>                      <span class="c1"># in position flag</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">input</span> <span class="o">=</span> <span class="n">JointStatusItem</span><span class="p">(</span><span class="n">jnum</span><span class="p">,</span> <span class="s1">&#39;input&#39;</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span>                      <span class="c1"># current input position</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_ferror</span> <span class="o">=</span> <span class="n">JointStatusItem</span><span class="p">(</span><span class="n">jnum</span><span class="p">,</span> <span class="s1">&#39;max_ferror&#39;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>            <span class="c1"># reflects [JOINT_n]FERROR</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_hard_limit</span> <span class="o">=</span> <span class="n">JointStatusItem</span><span class="p">(</span><span class="n">jnum</span><span class="p">,</span> <span class="s1">&#39;max_hard_limit&#39;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>    <span class="c1"># max hard limit exceeded flag</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_soft_limit</span> <span class="o">=</span> <span class="n">JointStatusItem</span><span class="p">(</span><span class="n">jnum</span><span class="p">,</span> <span class="s1">&#39;max_soft_limit&#39;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>    <span class="c1"># max soft limit exceeded flag</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">min_hard_limit</span> <span class="o">=</span> <span class="n">JointStatusItem</span><span class="p">(</span><span class="n">jnum</span><span class="p">,</span> <span class="s1">&#39;min_hard_limit&#39;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>    <span class="c1"># min hard limit exceeded flag</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">min_soft_limit</span> <span class="o">=</span> <span class="n">JointStatusItem</span><span class="p">(</span><span class="n">jnum</span><span class="p">,</span> <span class="s1">&#39;min_soft_limit&#39;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>    <span class="c1"># max soft limit exceeded flag</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">output</span> <span class="o">=</span> <span class="n">JointStatusItem</span><span class="p">(</span><span class="n">jnum</span><span class="p">,</span> <span class="s1">&#39;output&#39;</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span>                   <span class="c1"># commanded output position</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">override_limits</span> <span class="o">=</span> <span class="n">JointStatusItem</span><span class="p">(</span><span class="n">jnum</span><span class="p">,</span> <span class="s1">&#39;override_limits&#39;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>  <span class="c1"># override limits flag</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">velocity</span> <span class="o">=</span> <span class="n">JointStatusItem</span><span class="p">(</span><span class="n">jnum</span><span class="p">,</span> <span class="s1">&#39;velocity&#39;</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span>               <span class="c1"># current velocity</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="n">JointStatusItem</span><span class="p">(</span><span class="n">jnum</span><span class="p">,</span> <span class="s1">&#39;units&#39;</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">min_ferror</span><span class="o">=</span> <span class="n">JointStatusItem</span><span class="p">(</span><span class="n">jnum</span><span class="p">,</span> <span class="s1">&#39;min_ferror&#39;</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_position_limit</span> <span class="o">=</span> <span class="n">JointStatusItem</span><span class="p">(</span><span class="n">jnum</span><span class="p">,</span> <span class="s1">&#39;max_position_limit&#39;</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">min_position_limit</span> <span class="o">=</span> <span class="n">JointStatusItem</span><span class="p">(</span><span class="n">jnum</span><span class="p">,</span> <span class="s1">&#39;min_position_limit&#39;</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">_update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">jstat</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Periodic joint item updates.&quot;&quot;&quot;</span>
+
+        <span class="n">changed_items</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">jstat</span><span class="o">.</span><span class="n">items</span><span class="p">())</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">jstat</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">changed_items</span><span class="p">:</span>
+            <span class="n">LOG</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;JOINT_</span><span class="si">{0}</span><span class="s1"> </span><span class="si">{1}</span><span class="s1">: </span><span class="si">{2}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">jnum</span><span class="p">,</span> <span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">item</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+            <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">_update</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">jstat</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">jstat</span><span class="p">)</span></div>
+
+
+<span class="c1">#==============================================================================</span>
+<span class="c1"># Spindle status class</span>
+<span class="c1">#==============================================================================</span>
+
+<div class="viewcode-block" id="SpindleStatusItem"><a class="viewcode-back" href="../../../plugins/status.html#qtpyvcp.plugins.status.SpindleStatusItem">[docs]</a><span class="k">class</span> <span class="nc">SpindleStatusItem</span><span class="p">(</span><span class="n">StatusItem</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">snum</span><span class="p">,</span> <span class="n">item</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">typ</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">to_str</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">snum</span> <span class="o">=</span> <span class="n">snum</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">SpindleStatusItem</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">typ</span><span class="p">,</span> <span class="n">to_str</span><span class="p">,</span> <span class="n">description</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">typ</span><span class="p">(</span><span class="n">STAT</span><span class="o">.</span><span class="n">spindle</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">snum</span><span class="p">][</span><span class="bp">self</span><span class="o">.</span><span class="n">item</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="SpindleStatus"><a class="viewcode-back" href="../../../plugins/status.html#qtpyvcp.plugins.status.SpindleStatus">[docs]</a><span class="k">class</span> <span class="nc">SpindleStatus</span><span class="p">(</span><span class="n">QObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Spindle status class.</span>
+<span class="sd">        An instance of this class is created for each spindle.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">status</span><span class="p">,</span> <span class="n">snum</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">SpindleStatus</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">snum</span> <span class="o">=</span> <span class="n">snum</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="n">status</span>
+
+        <span class="c1"># `linuxcnc.stat.spindle[n]` attribute signals</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">brake</span> <span class="o">=</span> <span class="n">SpindleStatusItem</span><span class="p">(</span><span class="n">snum</span><span class="p">,</span> <span class="s1">&#39;brake&#39;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>                 <span class="c1"># value of the spindle brake flag</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">direction</span> <span class="o">=</span> <span class="n">SpindleStatusItem</span><span class="p">(</span><span class="n">snum</span><span class="p">,</span> <span class="s1">&#39;direction&#39;</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>          <span class="c1"># spindle rotational, forward=1, reverse=-1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">enabled</span> <span class="o">=</span> <span class="n">SpindleStatusItem</span><span class="p">(</span><span class="n">snum</span><span class="p">,</span> <span class="s1">&#39;enabled&#39;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>             <span class="c1"># value of the spindle enabled flag</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">override_enabled</span> <span class="o">=</span> <span class="n">SpindleStatusItem</span><span class="p">(</span><span class="n">snum</span><span class="p">,</span> <span class="s1">&#39;override_enabled&#39;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span><span class="c1"># spindle override enabled flag</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">override</span> <span class="o">=</span> <span class="n">SpindleStatusItem</span><span class="p">(</span><span class="n">snum</span><span class="p">,</span> <span class="s1">&#39;override&#39;</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span>               <span class="c1"># spindle override value, 0-1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">speed</span> <span class="o">=</span> <span class="n">SpindleStatusItem</span><span class="p">(</span><span class="n">snum</span><span class="p">,</span> <span class="s1">&#39;speed&#39;</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span>                <span class="c1"># spindle speed</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">increasing</span> <span class="o">=</span> <span class="n">SpindleStatusItem</span><span class="p">(</span><span class="n">snum</span><span class="p">,</span> <span class="s1">&#39;increasing&#39;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>       <span class="c1"># spindle speed increasing flag, unclear</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">orient_state</span> <span class="o">=</span> <span class="n">SpindleStatusItem</span><span class="p">(</span><span class="n">snum</span><span class="p">,</span> <span class="s1">&#39;orient_state&#39;</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>    <span class="c1"># orient state</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">orient_fault</span> <span class="o">=</span> <span class="n">SpindleStatusItem</span><span class="p">(</span><span class="n">snum</span><span class="p">,</span> <span class="s1">&#39;orient_fault&#39;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>   <span class="c1"># orient fault</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">homed</span> <span class="o">=</span> <span class="n">SpindleStatusItem</span><span class="p">(</span><span class="n">snum</span><span class="p">,</span> <span class="s1">&#39;homed&#39;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>                 <span class="c1"># not implemented</span>
+
+    <span class="k">def</span> <span class="nf">_update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_status</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Periodic spindle item updates.&quot;&quot;&quot;</span>
+
+        <span class="n">changed_items</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">new_status</span><span class="o">.</span><span class="n">items</span><span class="p">())</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">status</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">changed_items</span><span class="p">:</span>
+            <span class="n">LOG</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;SPINDLE_</span><span class="si">{0}</span><span class="s1"> </span><span class="si">{1}</span><span class="s1">: </span><span class="si">{2}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">snum</span><span class="p">,</span> <span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">item</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+            <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">_update</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="n">new_status</span></div>
+
+<span class="c1">#==============================================================================</span>
+<span class="c1"># Error status class</span>
+<span class="c1">#==============================================================================</span>
+
+<span class="c1"># ToDo: Move error and message handling into its own data plugin</span>
+<span class="k">class</span> <span class="nc">_Error</span><span class="p">(</span><span class="n">QObject</span><span class="p">):</span>
+
+    <span class="n">error</span> <span class="o">=</span> <span class="n">linuxcnc</span><span class="o">.</span><span class="n">error_channel</span><span class="p">()</span>
+
+    <span class="n">new_error</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+    <span class="n">new_message</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">_Error</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_periodic</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">error</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">error</span><span class="o">.</span><span class="n">poll</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">error</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="n">kind</span><span class="p">,</span> <span class="n">msg</span> <span class="o">=</span> <span class="n">error</span>
+
+        <span class="k">if</span> <span class="n">msg</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span> <span class="ow">or</span> <span class="n">msg</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Unknown error!&quot;</span>
+
+        <span class="k">if</span> <span class="n">kind</span> <span class="ow">in</span> <span class="p">[</span><span class="n">linuxcnc</span><span class="o">.</span><span class="n">NML_ERROR</span><span class="p">,</span> <span class="n">linuxcnc</span><span class="o">.</span><span class="n">OPERATOR_ERROR</span><span class="p">]:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">new_error</span><span class="o">.</span><span class="n">emit</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+            <span class="n">LOG</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">kind</span> <span class="ow">in</span> <span class="p">[</span><span class="n">linuxcnc</span><span class="o">.</span><span class="n">NML_TEXT</span><span class="p">,</span> <span class="n">linuxcnc</span><span class="o">.</span><span class="n">OPERATOR_TEXT</span><span class="p">,</span>
+            <span class="n">linuxcnc</span><span class="o">.</span><span class="n">NML_DISPLAY</span><span class="p">,</span> <span class="n">linuxcnc</span><span class="o">.</span><span class="n">OPERATOR_DISPLAY</span><span class="p">]:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">new_message</span><span class="o">.</span><span class="n">emit</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+            <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># notifications.show_error(&quot;UNKNOWN ERROR!&quot;, msg)</span>
+            <span class="n">LOG</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Kurt Jacobson
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

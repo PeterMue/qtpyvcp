@@ -1,0 +1,454 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>qtpyvcp.plugins.tool_table &mdash; QtPyVCP v0.1.4+18.g14e25b4 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> QtPyVCP
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v0.1.4+18.g14e25b4
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../basic_usage.html">Basic Usage</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Configuration</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../configuration.html">INI Configuration</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/widget_rules.html">Widget Rules</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Module &amp; API Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../plugins/index.html">QtPyVCP Data Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../actions/index.html">QtPyVCP Actions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../widgets/index.html">QtPyVCP Widgets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../application.html">QtPyVCP Application</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Developers Corner</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../development/development.html">Contributing to QtPyVCP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tools/index.html">Command-line Tools</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Links</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/kcjengr/qtpyvcp">QtPyVCP GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/linuxcnc/linuxcnc">LinuxCNC Github</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">QtPyVCP</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>qtpyvcp.plugins.tool_table</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for qtpyvcp.plugins.tool_table</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Tool Table data plugin.</span>
+
+<span class="sd">Exposes all the info available in the tool table. Watches the</span>
+<span class="sd">tool table file for changes and re-loads as needed.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="kn">from</span> <span class="nn">qtpy.QtCore</span> <span class="k">import</span> <span class="n">QFileSystemWatcher</span><span class="p">,</span> <span class="n">QTimer</span>
+
+<span class="kn">from</span> <span class="nn">qtpyvcp.utilities.info</span> <span class="k">import</span> <span class="n">Info</span>
+<span class="kn">from</span> <span class="nn">qtpyvcp.utilities.logger</span> <span class="k">import</span> <span class="n">getLogger</span>
+<span class="kn">from</span> <span class="nn">qtpyvcp.plugins</span> <span class="k">import</span> <span class="n">QtPyVCPDataPlugin</span><span class="p">,</span> <span class="n">QtPyVCPDataChannel</span><span class="p">,</span> <span class="n">getPlugin</span>
+
+<span class="n">STATUS</span> <span class="o">=</span> <span class="n">getPlugin</span><span class="p">(</span><span class="s1">&#39;status&#39;</span><span class="p">)</span>
+<span class="n">INFO</span> <span class="o">=</span> <span class="n">Info</span><span class="p">()</span>
+
+<span class="c1"># Set up logging</span>
+<span class="n">LOG</span> <span class="o">=</span> <span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="c1">#                          E X A M P L E   I N T E R F A C E</span>
+<span class="c1"># tooltable:current_tool?            # will return the current tool data dictionary</span>
+<span class="c1"># tooltable:current_tool?diameter    # will return the current tool diameter</span>
+<span class="c1"># toollife:current_tool?hours</span>
+
+<span class="n">DEFAULT_TOOL</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+    <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+    <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+    <span class="s1">&#39;D&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+    <span class="s1">&#39;I&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+    <span class="s1">&#39;J&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+    <span class="s1">&#39;P&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+    <span class="s1">&#39;Q&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+    <span class="s1">&#39;T&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+    <span class="s1">&#39;U&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+    <span class="s1">&#39;V&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+    <span class="s1">&#39;W&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+    <span class="s1">&#39;X&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+    <span class="s1">&#39;Y&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+    <span class="s1">&#39;Z&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+    <span class="s1">&#39;comment&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">NO_TOOL</span> <span class="o">=</span> <span class="n">DEFAULT_TOOL</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">NO_TOOL</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;T&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                <span class="s1">&#39;comment&#39;</span><span class="p">:</span> <span class="s1">&#39;No Tool Loaded&#39;</span><span class="p">})</span>
+
+<div class="viewcode-block" id="CurrentTool"><a class="viewcode-back" href="../../../plugins/tool_table.html#qtpyvcp.plugins.tool_table.CurrentTool">[docs]</a><span class="k">class</span> <span class="nc">CurrentTool</span><span class="p">(</span><span class="n">QtPyVCPDataChannel</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Current tool data channel.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">CurrentTool</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_value</span> <span class="o">=</span> <span class="n">NO_TOOL</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_value</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">number</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_value</span><span class="p">[</span><span class="s1">&#39;T&#39;</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">pocket</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_value</span><span class="p">[</span><span class="s1">&#39;P&#39;</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">diameter</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_value</span><span class="p">[</span><span class="s1">&#39;D&#39;</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">x_offset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_value</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">y_offset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_value</span><span class="p">[</span><span class="s1">&#39;Y&#39;</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">z_offset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_value</span><span class="p">[</span><span class="s1">&#39;Z&#39;</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">a_offset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_value</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">b_offset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_value</span><span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">c_offset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_value</span><span class="p">[</span><span class="s1">&#39;C&#39;</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">u_offset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_value</span><span class="p">[</span><span class="s1">&#39;U&#39;</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">v_offset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_value</span><span class="p">[</span><span class="s1">&#39;V&#39;</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">w_offset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_value</span><span class="p">[</span><span class="s1">&#39;W&#39;</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">front_angle</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_value</span><span class="p">[</span><span class="s1">&#39;I&#39;</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">back_angle</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_value</span><span class="p">[</span><span class="s1">&#39;J&#39;</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">orientation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_value</span><span class="p">[</span><span class="s1">&#39;Q&#39;</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">comment</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_value</span><span class="p">[</span><span class="s1">&#39;comment&#39;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">_update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_value</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">valueChanged</span><span class="o">.</span><span class="n">emit</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ToolTable"><a class="viewcode-back" href="../../../plugins/tool_table.html#qtpyvcp.plugins.tool_table.ToolTable">[docs]</a><span class="k">class</span> <span class="nc">ToolTable</span><span class="p">(</span><span class="n">QtPyVCPDataPlugin</span><span class="p">):</span>
+
+    <span class="n">protocol</span> <span class="o">=</span> <span class="s1">&#39;tooltable&#39;</span>
+
+    <span class="c1"># data channels</span>
+    <span class="n">current_tool</span> <span class="o">=</span> <span class="n">CurrentTool</span><span class="p">()</span>
+
+    <span class="n">TOOL_TABLE</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ToolTable</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">fs_watcher</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">tool_table_file</span> <span class="o">=</span> <span class="n">INFO</span><span class="o">.</span><span class="n">getToolTableFile</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tool_table_file</span><span class="p">):</span>
+            <span class="k">return</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">TOOL_TABLE</span> <span class="o">==</span> <span class="p">{}:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">loadToolTable</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_tool</span><span class="o">.</span><span class="n">_update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">TOOL_TABLE</span><span class="p">[</span><span class="n">STATUS</span><span class="o">.</span><span class="n">tool_in_spindle</span><span class="o">.</span><span class="n">value</span><span class="p">])</span>
+
+        <span class="c1"># update signals</span>
+        <span class="n">STATUS</span><span class="o">.</span><span class="n">tool_in_spindle</span><span class="o">.</span><span class="n">onValueChanged</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">onToolChanged</span><span class="p">)</span>
+
+<div class="viewcode-block" id="ToolTable.initialise"><a class="viewcode-back" href="../../../plugins/tool_table.html#qtpyvcp.plugins.tool_table.ToolTable.initialise">[docs]</a>    <span class="k">def</span> <span class="nf">initialise</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fs_watcher</span> <span class="o">=</span> <span class="n">QFileSystemWatcher</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fs_watcher</span><span class="o">.</span><span class="n">addPath</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tool_table_file</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fs_watcher</span><span class="o">.</span><span class="n">fileChanged</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">onToolTableFileChanged</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">onToolTableFileChanged</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+        <span class="n">LOG</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Tool Table file changed: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">path</span><span class="p">))</span>
+        <span class="c1"># ToolEdit deletes the file and then rewrites it, so wait</span>
+        <span class="c1"># a bit to ensure the new data has been writen out.</span>
+        <span class="n">QTimer</span><span class="o">.</span><span class="n">singleShot</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">reloadToolTable</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">onToolChanged</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tool_num</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_tool</span><span class="o">.</span><span class="n">_update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">TOOL_TABLE</span><span class="p">[</span><span class="n">tool_num</span><span class="p">])</span>
+
+    <span class="k">def</span> <span class="nf">reloadToolTable</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># rewatch the file if it stop being watched because it was deleted</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">tool_table_file</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fs_watcher</span><span class="o">.</span><span class="n">files</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fs_watcher</span><span class="o">.</span><span class="n">addPath</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tool_table_file</span><span class="p">)</span>
+
+        <span class="c1"># reload with the new data</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">loadToolTable</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">loadToolTable</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tool_table_file</span><span class="p">):</span>
+            <span class="n">LOG</span><span class="o">.</span><span class="n">critical</span><span class="p">(</span><span class="s2">&quot;Tool table file does not exist: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tool_table_file</span><span class="p">))</span>
+            <span class="k">return</span>
+
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tool_table_file</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fh</span><span class="p">:</span>
+            <span class="n">lines</span> <span class="o">=</span> <span class="n">fh</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+
+        <span class="n">table</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="n">NO_TOOL</span><span class="p">,}</span>
+
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
+
+            <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+            <span class="n">data</span><span class="p">,</span> <span class="n">sep</span><span class="p">,</span> <span class="n">comment</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">partition</span><span class="p">(</span><span class="s1">&#39;;&#39;</span><span class="p">)</span>
+
+            <span class="n">tool</span> <span class="o">=</span> <span class="n">DEFAULT_TOOL</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">split</span><span class="p">():</span>
+                <span class="n">descriptor</span> <span class="o">=</span> <span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">descriptor</span> <span class="ow">in</span> <span class="s1">&#39;TPXYZABCUVWDIJQ&#39;</span><span class="p">:</span>
+                    <span class="n">value</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="n">descriptor</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">descriptor</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="s1">&#39;P&#39;</span><span class="p">):</span>
+                        <span class="k">try</span><span class="p">:</span>
+                            <span class="n">tool</span><span class="p">[</span><span class="n">descriptor</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+                        <span class="k">except</span><span class="p">:</span>
+                            <span class="n">LOG</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;Error converting value to int: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
+                            <span class="k">break</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="k">try</span><span class="p">:</span>
+                            <span class="n">tool</span><span class="p">[</span><span class="n">descriptor</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+                        <span class="k">except</span><span class="p">:</span>
+                            <span class="n">LOG</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;Error converting value to float: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
+                            <span class="k">break</span>
+
+            <span class="n">tool</span><span class="p">[</span><span class="s1">&#39;comment&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">comment</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+            <span class="n">tnum</span> <span class="o">=</span> <span class="n">tool</span><span class="p">[</span><span class="s1">&#39;T&#39;</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">tnum</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                <span class="k">continue</span>
+
+            <span class="c1"># add the tool to the table</span>
+            <span class="n">table</span><span class="p">[</span><span class="n">tnum</span><span class="p">]</span> <span class="o">=</span> <span class="n">tool</span>
+
+        <span class="c1"># update tooltable</span>
+        <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">TOOL_TABLE</span> <span class="o">=</span> <span class="n">table</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_tool</span><span class="o">.</span><span class="n">_update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">TOOL_TABLE</span><span class="p">[</span><span class="n">STATUS</span><span class="o">.</span><span class="n">tool_in_spindle</span><span class="o">.</span><span class="n">value</span><span class="p">])</span></div>
+
+        <span class="c1"># import json</span>
+        <span class="c1"># print json.dumps(table, sort_keys=True, indent=4)</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Kurt Jacobson
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,283 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>ActionCheckBox &mdash; QtPyVCP v0.1.4+18.g14e25b4 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="ActionSpinBox" href="action_spinbox.html" />
+    <link rel="prev" title="ActionButton" href="action_button.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> QtPyVCP
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v0.1.4+18.g14e25b4
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../basic_usage.html">Basic Usage</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Configuration</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../configuration.html">INI Configuration</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/widget_rules.html">Widget Rules</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Module &amp; API Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../plugins/index.html">QtPyVCP Data Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../actions/index.html">QtPyVCP Actions</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">QtPyVCP Widgets</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#base-widgets">Base Widgets</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#button-widgets">Button Widgets</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="action_button.html">ActionButton</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">ActionCheckBox</a></li>
+<li class="toctree-l3"><a class="reference internal" href="action_spinbox.html">ActionSpinBox</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mdi_button.html">MDIButton</a></li>
+<li class="toctree-l3"><a class="reference internal" href="subcall_button.html">SubCallButton</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dialog_button.html">Dialog Button</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#menus">Menus</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../application.html">QtPyVCP Application</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Developers Corner</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../development/development.html">Contributing to QtPyVCP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">Command-line Tools</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Links</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/kcjengr/qtpyvcp">QtPyVCP GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/linuxcnc/linuxcnc">LinuxCNC Github</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">QtPyVCP</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">QtPyVCP Widgets</a> &raquo;</li>
+        
+      <li>ActionCheckBox</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/widgets/action_checkbox.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-qtpyvcp.widgets.button_widgets.action_checkbox">
+<span id="actioncheckbox"></span><h1>ActionCheckBox<a class="headerlink" href="#module-qtpyvcp.widgets.button_widgets.action_checkbox" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="qtpyvcp.widgets.button_widgets.action_checkbox.ActionCheckBox">
+<em class="property">class </em><code class="descclassname">qtpyvcp.widgets.button_widgets.action_checkbox.</code><code class="descname">ActionCheckBox</code><span class="sig-paren">(</span><em>parent=None</em>, <em>action=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qtpyvcp/widgets/button_widgets/action_checkbox.html#ActionCheckBox"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qtpyvcp.widgets.button_widgets.action_checkbox.ActionCheckBox" title="Permalink to this definition">¶</a></dt>
+<dd><p>General purpose checkbox for triggering QtPyVCP actions.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>parent</strong> (<em>QWidget</em><em>, </em><em>optional</em>) – The parent widget of the checkbox, or None.</li>
+<li><strong>action</strong> (<em>str</em><em>, </em><em>optional</em>) – The name of the action the checkbox should trigger.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="qtpyvcp.widgets.button_widgets.action_checkbox.ActionCheckBox.actionName">
+<code class="descname">actionName</code><a class="headerlink" href="#qtpyvcp.widgets.button_widgets.action_checkbox.ActionCheckBox.actionName" title="Permalink to this definition">¶</a></dt>
+<dd><p>Property for the name of the action the checkbox triggers (str).</p>
+<p>When this property is set it calls <code class="xref py py-meth docutils literal notranslate"><span class="pre">QtPyVCP.actions.bindWidget()</span></code>
+to bind the widget to the action.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="action_spinbox.html" class="btn btn-neutral float-right" title="ActionSpinBox" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="action_button.html" class="btn btn-neutral" title="ActionButton" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Kurt Jacobson
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
